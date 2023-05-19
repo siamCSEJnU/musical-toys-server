@@ -23,6 +23,17 @@ async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
+
+    const musicalToys = client.db("musicalToys");
+    const toysCollection = musicalToys.collection("toys");
+
+    app.post("/addToy", async (req, res) => {
+      const toy = req.body;
+      console.log(toy);
+      const result = await toysCollection.insertOne(toy);
+      res.send(result);
+    });
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
