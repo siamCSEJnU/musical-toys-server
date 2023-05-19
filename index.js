@@ -27,6 +27,12 @@ async function run() {
     const musicalToys = client.db("musicalToys");
     const toysCollection = musicalToys.collection("toys");
 
+    app.get("/allToys", async (req, res) => {
+      const cursor = toysCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    });
+
     app.post("/addToy", async (req, res) => {
       const toy = req.body;
       console.log(toy);
