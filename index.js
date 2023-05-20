@@ -62,6 +62,7 @@ async function run() {
           seller_name: updatedToy.seller_name,
           seller_email: updatedToy.seller_email,
           details: updatedToy.details,
+          tags: updatedToy.tags,
         },
       };
       const result = await toysCollection.updateOne(filter, toy, options);
